@@ -16,6 +16,7 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 
+// @CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/product")
 @RequiredArgsConstructor
@@ -33,6 +34,11 @@ public class ProductController {
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<ProductResponse> getAllProducts() {
+        // try {
+        //     Thread.sleep(3000);
+        // } catch (InterruptedException e) {
+        //     throw new RuntimeException(e);
+        // }
         return productService.getAllProducts();
     }
 }

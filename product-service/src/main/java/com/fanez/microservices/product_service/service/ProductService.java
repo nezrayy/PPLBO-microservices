@@ -24,17 +24,18 @@ public class ProductService {
                 .id(productRequest.id())
                 .name(productRequest.name())
                 .description(productRequest.description())
+                .skuCode(productRequest.skuCode())
                 .price(productRequest.price())
                 .build();
         productRepository.save(product);
         log.info("Product created: {}", product);
-        return new ProductResponse(product.getId(), product.getName(), product.getDescription(), product.getPrice().toString());
+        return new ProductResponse(product.getId(), product.getName(), product.getDescription(), product.getSkuCode(), product.getPrice());
     }
 
     public List<ProductResponse> getAllProducts() {
         return productRepository.findAll()
                 .stream()
-                .map(product -> new ProductResponse(product.getId(), product.getName(), product.getDescription(), product.getPrice().toString()))
+                .map(product -> new ProductResponse(product.getId(), product.getName(), product.getDescription(), product.getSkuCode(), product.getPrice()))
                 .toList();
     }
 }
